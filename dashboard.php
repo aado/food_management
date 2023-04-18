@@ -230,8 +230,9 @@ include("header.php");
                           </div>
                       </div>
                   </div>
-
-
+                  <br>
+                  <h1 style="text-align:center;background-color: dimgray;
+    color: white;"> MENU </h1>
   <div class="row">
     <?php
       $sql= "SELECT * FROM itemtb WHERE status='Active'";  
@@ -252,7 +253,7 @@ include("header.php");
                 <div class="lh-1">
                   <div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
                   <div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
-                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?>/-</small></div>
+                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?></small></div>
                   <div class="d-grid">
                   <div class="input-group input-sm">
                     <span class="input-group-text rounded-0">Quantity</span>
@@ -269,9 +270,6 @@ include("header.php");
 <?php
 }
 ?>
-    <div class="col">
-      2 of 2
-    </div>
   </div>
 
 <?php
