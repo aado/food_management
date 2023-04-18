@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> INVENTORY </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"  type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/css">
+<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" type="text/css">
+<link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" type="text/css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<nav class="navbar sticky-top navbar-light bg-light">
+  <a class="navbar-brand" href="#"> Welcome,  </a>
+</nav>
+</head>
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+<body>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-6 col-sm-3" type="button" data-toggle="modal" data-target=".addviand" style="border: 1px solid;border-color: gray;">
+      
+      <div style="padding:20%;">
+        <i class="fa-sharp fa-solid fa-cart-plus fa-3x"  alt="Add"></i>
+        <span class="align-middle" style="text-align: center;"></span>
+      </div>
+         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".addviand"> Add </button> -->
+    </div>
+    <div class="col-6 col-sm-3" type="button" data-toggle="modal" data-target=".addviand" style="border: 1px solid;border-color: gray;margin-left: 2%;">
+      <div style="padding:20%;">
+       <i class="fa-solid fa-clipboard-list fa-3x"></i>
+        <!-- 
+        <i class="fa-sharp fa-solid fa-cart-plus fa-3x"></i> -->
+        <span class="align-middle" style="text-align: center;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <br>
+    <div class="card">
+      <div class="card-body">
+
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> DISHES </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"> VIEW SALES  </a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
+            <br><br>
+
+        <table  class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Dishes Name</th>
+                <th> Quantity </th>
+                <th>Price</th>
+                <!-- <th>Available</th> -->
+            </tr>
+        </thead>
+        <tbody id="dishes"></tbody>
+      </table>
+
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+<br>
+  <!-- Modal -->
+<div class="modal fade addviand" tabindex="-1" role="dialog" aria-labelledby="addviand" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Add </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label> Date </label>
+                  <input type="Date" name="date" id="date"  class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label> Dish Name </label>
+                  <input type="text" name="dishname" id="dishname" class="form-control" required>
+                </div>
+               
+              </div>
+              <div class="col">
+                 <div class="form-group">
+                  <label> Qty </label>
+                  <input type="text" name="qty" id="qty" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label> Price </label>
+                  <input type="text" name="price" id="price" class="form-control" required>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" name="addData" id="addData" class="btn btn-primary"> Save </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#example').DataTable();
+});
+
+</script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+  import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"; 
+  
+
+  //import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJe8LyXxISlifBL0I_x3IpY1Y3T7n2TKA",
+    authDomain: "inventory-d3be8.firebaseapp.com",
+    projectId: "inventory-d3be8",
+    storageBucket: "inventory-d3be8.appspot.com",
+    messagingSenderId: "672216838490",
+    appId: "1:672216838490:web:4939043d8f2cf4a7108363",
+    measurementId: "G-2HQPKLJHCB"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  // const analytics = getAnalytics(app);
+
+  addData.addEventListener('click',(e) =>{
+
+    var date = document.getElementById('date').value;
+    var dishname = document.getElementById('dishname').value;
+    var qty = document.getElementById('qty').value;
+    var price = document.getElementById('price').value;
+
+// const newKey = push(child(ref(database), 'users')).key;
+
+    set(ref(database, 'tbl_Dish/' + date), {
+            date: date,
+            dishname: dishname,
+             qty: qty,
+            price: price
+        }).then(() => {
+            // Data saved successfully!
+           alert('data submitted');
+           location.reload();
+           
+        })
+            .catch((error) => {
+                // The write failed...
+                alert(error);
+    });
+ 
+ });
+        var date = "";
+        var tbody = document.getElementById('dishes');
+
+        function addDishesToTable(date, dishname, qty,price){
+          let trow = document.createElement("tr");
+          let td1 = document.createElement('td');
+          let td2 = document.createElement('td');
+          let td3 = document.createElement('td');
+          let td4 = document.createElement('td');
+
+          td1.innerHTML= ++date;
+          td2.innerHTML= dishname;
+          td3.innerHTML= price;
+          td4.innerHTML= qty;
+
+          trow.appendChild(td1);
+          trow.appendChild(td2);
+          trow.appendChild(td3);
+          trow.appendChild(td4);
+
+          tbody.appendChild(trow);
+
+        }
+
+        // function AddAllDishesOnce(disheslist){
+        //   date ='';
+        //   tbody.innerHTML="";
+        //   disheslist.forEach(element => {
+        //     addDishes(element.date,element.dishname,element.price,element.qty);
+
+        //   });
+        // }
+
+        // function getAllDataonce() {
+        //   const dbRef = ref(database);
+        //     get (child(dbRef, "tbl_Dish"))
+        //     .then ((snapshot) =>{
+        //       var dishlist =[];
+
+        //       snapshot.forEach(childSnapshot => {
+        //         dishlist.push(childSnapshot.val());
+        //       });
+
+        //       addDishesToTable(dishlist);
+        //     });
+        // }
+        //  window.onload = getCurrentDish;
+
+        function getCurrentDish() {
+          const dbRef = ref(database, "tbl_Dish");
+
+          onValue(dbRef,(snapshot) => {
+            var dishname =[];
+
+            snapshot.forEach(childSnapshot => {
+              dishname.push(childSnapshot.val());
+            });
+
+            addDishesToTable(dishname);
+          })
+        }
+        window.onload = getCurrentDish;
+  
+
+</script>

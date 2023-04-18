@@ -1,0 +1,145 @@
+<?php
+include("header.php");
+if(isset($_GET[delid]))
+{
+	$sql = "DELETE FROM billingb WHERE bill_id='$_GET[delid]'";
+	$qsql = mysqli_query($con,$sql);
+	if(mysqli_affected_rows($con) == 1)
+	{
+		echo "<script>alert('bill record deleted successfully..');</script>";
+	}
+}
+?>
+  
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:50px">
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32 w3-center" style="max-width:1200px;margin-top:50px">  
+    <div class="w3-padding-32">
+      <h4><b>New Bill</b></h4>
+      <h6><i>Add New Bill receipt</i></h6>
+<div id="wrapper">
+  <div id="content">Items<br>
+  <?php 
+  $_SESSION[randomid]  = rand();
+if(isset($_GET[editid]))
+{
+	$sqledit = "SELECT * FROM itemtb WHERE item_id='$_GET[editid]'";
+	$qsqledit =mysqli_query($con,$sqledit);
+	$rsedit = mysqli_fetch_array($qsqledit);
+} ?>
+  
+  </div>
+  <div id="sidebar">SELECT ITEM<br>
+<?php
+$sql= "SELECT * FROM itemtb";  
+$qsql = mysqli_query($con,$sql);
+while($rs = mysqli_fetch_array($qsql))
+{
+		
+	$sqlmaincat = "SELECT * FROM categorytb WHERE category_id='$rs[category_id]'";
+	$qsqlmaincat = mysqli_query($con,$sqlmaincat);
+	$rsmaincat = mysqli_fetch_array($qsqlmaincat);
+  echo "<div style='background-color:red;width:250px;'>
+  <img src='itemimg/$rs[item_img]' width='50' height='50' align='left'>
+  <strong>$rs[item_name]</strong>
+  ₹  $rs[item_cost]&
+  <hr style='width:240px;'>
+  </div>
+  ";
+}
+?>
+  </div>
+  <div id="cleared"></div>
+</div>
+<style type="text/css">
+#wrapper {
+  margin-left: 250px;
+}
+#content {
+  float: right;
+  width: 100%;
+  background-color: #CCF;
+}
+#sidebar {
+  float: left;
+  width: 250px;
+  margin-left: -250px;
+  background-color: #FFA;
+}
+#cleared {
+  clear: both;
+}
+</style>
+<!--
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+  <tr>
+    <th scope="col">&nbsp;Bill type</th>
+    <th scope="col">&nbsp;Bill No.</th>
+    <th scope="col">&nbsp;Customer</th>
+    <th scope="col">&nbsp;Order date</th>
+    <th scope="col">&nbsp;Bill date</th>
+    <th scope="col">&nbsp;Bill time</th>
+    <th scope="col">&nbsp;Tax</th>
+    <th scope="col">&nbsp;Tax type</th>
+    <th scope="col">&nbsp;Discount</th>
+    <th scope="col">&nbsp;Discount type</th>
+    <th scope="col">&nbsp;Ohter cost</th>
+    <th scope="col">&nbsp;Status</th>
+    <th scope="col">&nbsp;Action</th>
+  </tr>
+  </thead>
+  <tbody>
+<?php
+$sql= "SELECT * FROM billingtb";  
+$qsql = mysqli_query($con,$sql);
+while($rs = mysqli_fetch_array($qsql))
+{
+		
+	$sqlmaincat = "SELECT * FROM customertb WHERE customer_id='$rs[customer_id]'";
+	$qsqlmaincat = mysqli_query($con,$sqlmaincat);
+	$rsmaincat = mysqli_fetch_array($qsqlmaincat);
+  echo "<tr>
+    <td>&nbsp;$rs[bill_type]</td>
+    <td>&nbsp;$rs[bill_no]</td>
+    <td>&nbsp;$rs[customer_id]</td>
+    <td>&nbsp;$rs[order_date]</td>
+    <td>&nbsp;$rs[bill_date]</td>
+    <td>&nbsp;$rs[bill_time]</td>
+    <td>&nbsp;$rs[tax]</td>
+    <td>&nbsp;$rs[tax_typ]</td>
+    <td>&nbsp;$rs[discount]</td>
+    <td>&nbsp;$rs[discount_type]</td>
+    <td>&nbsp;$rs[other_cost]</td>
+    <td>&nbsp;$rs[status]</td>
+    <td>&nbsp;<a href='viewitem.php?delid=$rs[item_id]' onclick='return deleteconfirm()'>Delete</a></td>
+  </tr>";
+}
+?>
+</tbody>
+</table>
+-->
+    </div>
+  </div>
+  <hr>
+<?php
+include("footer.php");
+?>
+<?php
+include("datatables.php");
+?>
+<script>
+function deleteconfirm()
+{
+	if(confirm("Are you sure??") == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>
