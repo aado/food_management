@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 14, 2023 at 10:18 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 18, 2023 at 03:30 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,8 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `billingtb`
 --
 
-CREATE TABLE `billingtb` (
-  `bill_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `billingtb`;
+CREATE TABLE IF NOT EXISTS `billingtb` (
+  `bill_id` int(10) NOT NULL AUTO_INCREMENT,
   `bill_type` varchar(15) NOT NULL,
   `bill_no` int(10) NOT NULL,
   `customer_id` int(10) NOT NULL,
@@ -40,8 +41,9 @@ CREATE TABLE `billingtb` (
   `discount` float(10,2) NOT NULL,
   `discount_type` varchar(20) NOT NULL,
   `other_cost` float(10,2) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`bill_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `billingtb`
@@ -56,13 +58,15 @@ INSERT INTO `billingtb` (`bill_id`, `bill_type`, `bill_no`, `customer_id`, `orde
 -- Table structure for table `categorytb`
 --
 
-CREATE TABLE `categorytb` (
-  `category_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `categorytb`;
+CREATE TABLE IF NOT EXISTS `categorytb` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
   `main_catid` int(10) NOT NULL,
   `cat_name` varchar(25) NOT NULL,
   `cat_note` text NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categorytb`
@@ -84,12 +88,14 @@ INSERT INTO `categorytb` (`category_id`, `main_catid`, `cat_name`, `cat_note`, `
 -- Table structure for table `citytb`
 --
 
-CREATE TABLE `citytb` (
-  `city_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `citytb`;
+CREATE TABLE IF NOT EXISTS `citytb` (
+  `city_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `city` varchar(25) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `citytb`
@@ -116,8 +122,9 @@ INSERT INTO `citytb` (`city_id`, `user_id`, `city`, `status`) VALUES
 -- Table structure for table `customertb`
 --
 
-CREATE TABLE `customertb` (
-  `customer_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `customertb`;
+CREATE TABLE IF NOT EXISTS `customertb` (
+  `customer_id` int(10) NOT NULL AUTO_INCREMENT,
   `customer_type` varchar(20) NOT NULL,
   `customer_name` varchar(25) NOT NULL,
   `login_id` varchar(25) NOT NULL,
@@ -127,8 +134,9 @@ CREATE TABLE `customertb` (
   `shop_name` varchar(100) NOT NULL,
   `tin_no` varchar(15) NOT NULL,
   `mobile_no` varchar(15) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customertb`
@@ -155,12 +163,14 @@ INSERT INTO `customertb` (`customer_id`, `customer_type`, `customer_name`, `logi
 -- Table structure for table `discounttb`
 --
 
-CREATE TABLE `discounttb` (
-  `discount_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `discounttb`;
+CREATE TABLE IF NOT EXISTS `discounttb` (
+  `discount_id` int(10) NOT NULL AUTO_INCREMENT,
   `discount_type` varchar(25) NOT NULL,
   `discount_amt` float(10,2) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`discount_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `discounttb`
@@ -175,8 +185,9 @@ INSERT INTO `discounttb` (`discount_id`, `discount_type`, `discount_amt`, `statu
 -- Table structure for table `itemtb`
 --
 
-CREATE TABLE `itemtb` (
-  `item_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `itemtb`;
+CREATE TABLE IF NOT EXISTS `itemtb` (
+  `item_id` int(10) NOT NULL AUTO_INCREMENT,
   `category_id` int(10) NOT NULL,
   `item_name` varchar(25) NOT NULL,
   `item_discription` text NOT NULL,
@@ -184,8 +195,9 @@ CREATE TABLE `itemtb` (
   `item_img` varchar(100) NOT NULL,
   `discount_type` varchar(50) NOT NULL,
   `discount_amt` varchar(50) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `itemtb`
@@ -203,7 +215,8 @@ INSERT INTO `itemtb` (`item_id`, `category_id`, `item_name`, `item_discription`,
 -- Table structure for table `mastertb`
 --
 
-CREATE TABLE `mastertb` (
+DROP TABLE IF EXISTS `mastertb`;
+CREATE TABLE IF NOT EXISTS `mastertb` (
   `line_no` int(10) NOT NULL,
   `line_type` varchar(10) NOT NULL,
   `line_text` text NOT NULL,
@@ -216,15 +229,17 @@ CREATE TABLE `mastertb` (
 -- Table structure for table `recordstb`
 --
 
-CREATE TABLE `recordstb` (
-  `bill_recid` int(10) NOT NULL,
+DROP TABLE IF EXISTS `recordstb`;
+CREATE TABLE IF NOT EXISTS `recordstb` (
+  `bill_recid` int(10) NOT NULL AUTO_INCREMENT,
   `bill_id` int(10) NOT NULL,
   `item_id` int(10) NOT NULL,
   `qty` float(10,2) NOT NULL,
   `item_cost` float(10,2) NOT NULL,
   `discount` float(10,2) NOT NULL,
   `discount_type` varchar(20) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`bill_recid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -233,14 +248,16 @@ CREATE TABLE `recordstb` (
 -- Table structure for table `stocktb`
 --
 
-CREATE TABLE `stocktb` (
-  `stock_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `stocktb`;
+CREATE TABLE IF NOT EXISTS `stocktb` (
+  `stock_id` int(10) NOT NULL AUTO_INCREMENT,
   `stock_type` varchar(20) NOT NULL,
   `item_id` int(10) NOT NULL,
   `date` date NOT NULL,
   `qty` float(10,2) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`stock_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stocktb`
@@ -254,7 +271,11 @@ INSERT INTO `stocktb` (`stock_id`, `stock_type`, `item_id`, `date`, `qty`, `stat
 (33, 'Stock', 1, '2017-02-08', 2500.00, 'Active'),
 (34, 'Stock', 2, '2017-02-08', 2000.00, 'Active'),
 (35, 'Stock', 3, '2017-02-08', 1000.00, 'Active'),
-(36, 'Sales', 3, '2017-02-08', 200.00, 'Active');
+(36, 'Sales', 3, '2017-02-08', 200.00, 'Active'),
+(37, 'Stock', 1, '2023-04-17', 10.00, 'Active'),
+(38, 'Stock', 2, '2023-04-17', 10.00, 'Active'),
+(39, 'Stock', 3, '2023-04-17', 10.00, 'Active'),
+(40, 'Stock', 4, '2023-04-17', 10.00, 'Active');
 
 -- --------------------------------------------------------
 
@@ -262,12 +283,14 @@ INSERT INTO `stocktb` (`stock_id`, `stock_type`, `item_id`, `date`, `qty`, `stat
 -- Table structure for table `taxtb`
 --
 
-CREATE TABLE `taxtb` (
-  `tax_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `taxtb`;
+CREATE TABLE IF NOT EXISTS `taxtb` (
+  `tax_id` int(10) NOT NULL AUTO_INCREMENT,
   `tax` float(10,2) NOT NULL,
   `tax_type` varchar(20) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`tax_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `taxtb`
@@ -283,8 +306,9 @@ INSERT INTO `taxtb` (`tax_id`, `tax`, `tax_type`, `status`) VALUES
 -- Table structure for table `transactiontb`
 --
 
-CREATE TABLE `transactiontb` (
-  `transaction_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `transactiontb`;
+CREATE TABLE IF NOT EXISTS `transactiontb` (
+  `transaction_id` int(10) NOT NULL AUTO_INCREMENT,
   `bill_id` int(10) NOT NULL,
   `trans_type` varchar(10) NOT NULL,
   `customer_id` int(10) NOT NULL,
@@ -292,7 +316,8 @@ CREATE TABLE `transactiontb` (
   `amt` float(10,2) NOT NULL,
   `payment_type` varchar(10) NOT NULL,
   `payment_details` text NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -301,16 +326,18 @@ CREATE TABLE `transactiontb` (
 -- Table structure for table `usertb`
 --
 
-CREATE TABLE `usertb` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usertb`;
+CREATE TABLE IF NOT EXISTS `usertb` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_type` varchar(15) NOT NULL,
   `name` varchar(25) NOT NULL,
   `login_id` varchar(25) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email_id` varchar(50) NOT NULL,
   `mobile_no` varchar(15) NOT NULL,
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usertb`
@@ -319,148 +346,8 @@ CREATE TABLE `usertb` (
 INSERT INTO `usertb` (`user_id`, `user_type`, `name`, `login_id`, `password`, `email_id`, `mobile_no`, `status`) VALUES
 (1, 'Admin', 'fgfg', 'admin', '0192023a7bbd73250516f069df18b500', 'fgfg', 't76878787878', 'Active'),
 (3, 'Operator', 'raj kiran', 'rajkiran', '0192023a7bbd73250516f069df18b500', 'rajkiran@gmail.com', '9986058114', 'Active'),
-(4, 'Operator', 'operator', 'operator1', '4b583376b2767b923c3e1da60d10de59', 'operator@gmial.com', '', 'Active'),
+(4, 'Operator', 'operator', 'operator1', '0192023a7bbd73250516f069df18b500', 'operator@gmial.com', '', 'Active'),
 (5, 'Admin', 'Raj kiran', 'rajkiran1', '0f7e44a922df352c05c5f73cb40ba115', 'rajkiran@gmail.com', '9986058114', 'Active');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `billingtb`
---
-ALTER TABLE `billingtb`
-  ADD PRIMARY KEY (`bill_id`);
-
---
--- Indexes for table `categorytb`
---
-ALTER TABLE `categorytb`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `citytb`
---
-ALTER TABLE `citytb`
-  ADD PRIMARY KEY (`city_id`);
-
---
--- Indexes for table `customertb`
---
-ALTER TABLE `customertb`
-  ADD PRIMARY KEY (`customer_id`);
-
---
--- Indexes for table `discounttb`
---
-ALTER TABLE `discounttb`
-  ADD PRIMARY KEY (`discount_id`);
-
---
--- Indexes for table `itemtb`
---
-ALTER TABLE `itemtb`
-  ADD PRIMARY KEY (`item_id`);
-
---
--- Indexes for table `recordstb`
---
-ALTER TABLE `recordstb`
-  ADD PRIMARY KEY (`bill_recid`);
-
---
--- Indexes for table `stocktb`
---
-ALTER TABLE `stocktb`
-  ADD PRIMARY KEY (`stock_id`);
-
---
--- Indexes for table `taxtb`
---
-ALTER TABLE `taxtb`
-  ADD PRIMARY KEY (`tax_id`);
-
---
--- Indexes for table `transactiontb`
---
-ALTER TABLE `transactiontb`
-  ADD PRIMARY KEY (`transaction_id`);
-
---
--- Indexes for table `usertb`
---
-ALTER TABLE `usertb`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `billingtb`
---
-ALTER TABLE `billingtb`
-  MODIFY `bill_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `categorytb`
---
-ALTER TABLE `categorytb`
-  MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `citytb`
---
-ALTER TABLE `citytb`
-  MODIFY `city_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `customertb`
---
-ALTER TABLE `customertb`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `discounttb`
---
-ALTER TABLE `discounttb`
-  MODIFY `discount_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `itemtb`
---
-ALTER TABLE `itemtb`
-  MODIFY `item_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `recordstb`
---
-ALTER TABLE `recordstb`
-  MODIFY `bill_recid` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `stocktb`
---
-ALTER TABLE `stocktb`
-  MODIFY `stock_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `taxtb`
---
-ALTER TABLE `taxtb`
-  MODIFY `tax_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `transactiontb`
---
-ALTER TABLE `transactiontb`
-  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `usertb`
---
-ALTER TABLE `usertb`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
