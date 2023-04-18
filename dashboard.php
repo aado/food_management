@@ -134,21 +134,20 @@ include("header.php");
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-                                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                              TOTAL STOCKS</div>
-                                              <p></p>
-                                          <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php 
-                                            $sql = "SELECT * FROM stocktb WHERE status='Active'";
-                                            $qsql = mysqli_query($con,$sql);
-                                            echo mysqli_num_rows($qsql);
-                                            ?>
-                                          </div>
-                                      </div>
-         
-                                      <div class="col-auto">
-                                          <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                      </div>
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              TOTAL STOCKS</div>
+              <p></p>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+              <?php 
+                $sql = "SELECT * FROM stocktb WHERE status='Active'";
+                $qsql = mysqli_query($con,$sql);
+                  echo mysqli_num_rows($qsql);
+              ?>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
                                   </div>
                               </div>
                           </div>
@@ -240,20 +239,20 @@ include("header.php");
       while($rs = mysqli_fetch_array($qsql))
       {   
     ?>
-    <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 food-item">
-          <form method="post" action="cart.php?action=add&id=<?php echo $item["item_id"]; ?>">
-            <input type="hidden" name="item_name" value="<?php echo $item["item_name"]; ?>">
-            <input type="hidden" name="item_price" value="<?php echo $item["item_cost"]; ?>">
-            <input type="hidden" name="item_id" value="<?php echo $item["item_id"]; ?>">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 food-item">
+          <form method="post" action="cart.php?action=add&id=<?php echo $rs["item_id"]; ?>">
+            <input type="hidden" name="item_name" value="<?php echo $rs["item_name"]; ?>">
+            <input type="hidden" name="item_cost" value="<?php echo $rs["item_cost"]; ?>">
+            <input type="hidden" name="item_id" value="<?php echo $rs["item_id"]; ?>">
             <div class="card rounded-0" align="center";>                      
               <div class="food-img-holder position-relative overflow-hidden">
-              <img src="<?php echo $item["images"]; ?>" class="img-top">
+              <!-- <img src="<?php echo $rs["images"]; ?>" class="img-top"> -->
               </div>
               <div class="card-body">
                 <div class="lh-1">
-                  <div class="card-title fw-bold h5 mb-0"><?php echo $item["name"]; ?></div>
-                  <div class="card-description text-muted"><small><?php echo $item["description"]; ?></small></div>
-                  <div><small class="card-description text-success h6 mb-0">$ <?php echo $item["price"]; ?>/-</small></div>
+                  <div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
+                  <div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
+                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?>/-</small></div>
                   <div class="d-grid">
                   <div class="input-group input-sm">
                     <span class="input-group-text rounded-0">Quantity</span>
