@@ -1,9 +1,7 @@
 
 <?php
-include("header.php");
-?>
-<?php
-include("main_header.php");
+  include("header.php");
+  include("main_header.php");
 ?>
 
 <!-- !PAGE CONTENT! -->
@@ -163,17 +161,17 @@ include("main_header.php");
                               <div class="card-body">
                                   <div class="row no-gutters align-items-center">
                                        <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 
-              Remaining Stocks (Today)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">
-                <?php 
-                  $sql = "SELECT * FROM stocktb WHERE status='Active'";
-                  $qsql = mysqli_query($con,$sql);
-                  echo mysqli_num_rows($qsql);
-                ?>
-              </div>
-          </div>
+											Remaining Stocks (Today)</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800">
+												<?php 
+												$sql = "SELECT * FROM stocktb WHERE status='Active'";
+												$qsql = mysqli_query($con,$sql);
+												echo mysqli_num_rows($qsql);
+												?>
+											</div>
+										</div>
                                       <div class="col-auto">
                                           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                       </div>
@@ -253,28 +251,26 @@ include("main_header.php");
               <div class="food-img-holder position-relative overflow-hidden">
               <!-- <img src="<?php echo $rs["images"]; ?>" class="img-top"> -->
               </div>
-              <div class="card-body">
-                <div class="lh-1">
-                  <div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
-                  <div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
-                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?></small></div>
-                  <div class="d-grid">
-                  <div class="input-group input-sm">
-                    <span class="input-group-text rounded-0">Quantity</span>
-                    <input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
-                  </div>
-                  <input type="submit" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" value="Add to Cart">
-                  </div>
-                </div>
-              </div>
-              
+				<div class="card-body">
+						<div class="lh-1">
+							<img src='itemimg/<?php echo $rs["item_img"]; ?>' style="width: 240px;height: 153px;margin-bottom: 10px;">
+						<div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
+						<div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
+						<div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?></small></div>
+						<div class="d-grid" style="margin-top: 10px;">
+						<div class="input-group input-sm">
+							<span class="input-group-text rounded-0">Quantity</span>
+							<input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
+						</div>
+						<input type="submit" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" value="Add to Cart">
+						</div>
+						</div>
+				</div>
             </div>
           </form>    
         </div>
-<?php
-}
-?>
-  </div>
+		<?php } ?>
+  	</div>
 
 <?php
 include("footer.php");

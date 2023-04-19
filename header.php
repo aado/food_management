@@ -18,7 +18,7 @@ if(isset($_SESSION[user_id]))
 ?>
 <!DOCTYPE html>
 <html>
-<title>Van Distribution</title>
+<title>Food Management</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">

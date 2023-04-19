@@ -28,6 +28,7 @@ if(isset($_SESSION[user_id]))
 <nav class="w3-sidenav w3-card-2 w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:30%;min-width:300px" id="mySidenav">
   <a href="javascript:void(0)" onclick="w3_close()"  class="w3-closenav">Close Admin Menu</a>
   <a href="dashboard.php">Dashboard</a>
+  <a href="foodmenu.php">Menu</a>
   <a href="viewitem.php">Items</a>
   <a href="viewstock.php">Stock</a>
   <!-- <a href="viewbilling.php">Billing</a> -->

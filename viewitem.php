@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+include("main_header.php");
 if(isset($_GET[delid]))
 {
 	$sql = "DELETE FROM itemtb WHERE item_id='$_GET[delid]'";
