@@ -71,41 +71,41 @@ body {font-family: "Lato", sans-serif;}
 		while($rs = mysqli_fetch_array($qsql))
 		{   
 	?>
-		<button class="tablinks" onclick="openCity(event, '<?php echo $rs['cat_name']; ?>')" id="defaultOpen"><?php echo $rs["cat_name"]; ?></button>
+		<button class="tablinks" onclick="openCity(event, '<?php echo $rs['category_id']; ?>')" id="defaultOpen"><?php echo $rs["cat_name"]; ?></button>
 		<!-- <button class="tablinks" onclick="openCity(event, 'Paris')">Cat2</button> -->
 		<!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">Cat1</button> -->
   	<?php }  ?>
 </div>
 <?php
-	$sql= "SELECT * FROM categorytb WHERE main_catid=0";  
-	$qsql = mysqli_query($con,$sql);
-	while($rs = mysqli_fetch_array($qsql))
+	$sqlcat= "SELECT * FROM categorytb WHERE main_catid=0";  
+	$qsqlcat = mysqli_query($con,$sqlcat);
+	while($rs = mysqli_fetch_array($qsqlcat))
 	{   
 ?>
-<div id="<?php echo $rs['cat_name']; ?>" class="tabcontent">
+<div id="<?php echo $rs['category_id']; ?>" class="tabcontent">
   <h3><?php echo $rs['cat_name']; ?></h3>
   <div class="row">
     <?php
-      $sql= "SELECT * FROM itemtb WHERE status='Active'";  
+      $sql= "SELECT * FROM itemtb WHERE status='Active' AND category_id=".$rs['category_id']."";  
       $qsql = mysqli_query($con,$sql);
-      while($rs = mysqli_fetch_array($qsql))
+      while($rsitem = mysqli_fetch_array($qsql))
       {   
     ?>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 food-item">
-          <form method="post" action="cart.php?action=add&id=<?php echo $rs["item_id"]; ?>">
-            <input type="hidden" name="item_name" value="<?php echo $rs["item_name"]; ?>">
-            <input type="hidden" name="item_cost" value="<?php echo $rs["item_cost"]; ?>">
-            <input type="hidden" name="item_id" value="<?php echo $rs["item_id"]; ?>">
+          <form method="post" action="cart.php?action=add&id=<?php echo $rsitem["item_id"]; ?>">
+            <input type="hidden" name="item_name" value="<?php echo $rsitem["item_name"]; ?>">
+            <input type="hidden" name="item_cost" value="<?php echo $rsitem["item_cost"]; ?>">
+            <input type="hidden" name="item_id" value="<?php echo $rsitem["item_id"]; ?>">
             <div class="card rounded-0" align="center";>                      
               <div class="food-img-holder position-relative overflow-hidden">
-              <!-- <img src="<?php echo $rs["images"]; ?>" class="img-top"> -->
+              <!-- <img src="<?php echo $rsitem["images"]; ?>" class="img-top"> -->
               </div>
               <div class="card-body">
                 <div class="lh-1">
-					<img src='itemimg/<?php echo $rs["item_img"]; ?>' style="width: 240px;height: 153px;margin-bottom: 10px;">
-                  <div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
-                  <div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
-                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?></small></div>
+					<img src='itemimg/<?php echo $rsitem["item_img"]; ?>' style="width: 240px;height: 153px;margin-bottom: 10px;">
+                  <div class="card-title fw-bold h5 mb-0"><?php echo $rsitem["item_name"]; ?></div>
+                  <div class="card-description text-muted"><small><?php echo $rsitem["description"]; ?></small></div>
+                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rsitem["item_cost"]; ?></small></div>
                   <div class="d-grid" style="margin-top: 10px;">
                   <div class="input-group input-sm">
                     <span class="input-group-text rounded-0">Quantity</span>
