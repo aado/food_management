@@ -102,7 +102,7 @@ body {font-family: "Lato", sans-serif;}
               </div>
               <div class="card-body">
                 <div class="lh-1">
-					<img src='itemimg/<?php echo $rsitem["item_img"]; ?>' style="width: 240px;height: 153px;margin-bottom: 10px;">
+					<img src='itemimg/<?php echo $rsitem["item_img"]; ?>' style="width: 100%;height: 100%;margin-bottom: 10px;">
                   <div class="card-title fw-bold h5 mb-0"><?php echo $rsitem["item_name"]; ?></div>
                   <div class="card-description text-muted"><small><?php echo $rsitem["description"]; ?></small></div>
                   <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rsitem["item_cost"]; ?></small></div>
