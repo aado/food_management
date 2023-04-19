@@ -41,20 +41,21 @@ include("menu.php");
 ?>
 <!-- Top menu -->
 <div class="w3-top">
-  <div class="w3-white w3-xlarge w3-padding-xlarge" >
-    <div class="w3-opennav w3-left w3-hover-text-grey" onclick="w3_open()">☰</div>
+<!-- w3-padding-xlarge -->
+  <div class="w3-white w3-xlarge" >
+    <!-- <div class="w3-opennav w3-left w3-hover-text-grey" onclick="w3_open()">☰</div> -->
     
     <?php
 	if(isset($_SESSION[customer_id]))
 	{
 	?>
-    	<div class="w3-right">Welcome <?php echo  $rscustomer[customer_name] ; ?> | <a href="logout.php">Logout</a></div>
+    	<div class="w3-right" style=" font-size: 20px; margin-right: 45px;">Welcome <?php echo  $rscustomer[customer_name] ; ?> | <a href="logout.php">Logout</a></div>
     <?php
 	}
 	else if(isset($_SESSION[user_id]))
 	{
 	?>
-    	<div class="w3-right">Welcome <?php echo  $rsuser[name] ; ?> | <a href="logout.php">Logout</a></div>
+    	<div class="w3-right"  style=" font-size: 20px; margin-right: 45px;">Welcome <?php echo  $rsuser[name] ; ?> | <a href="logout.php">Logout</a></div>
     <?php
 	}
 	else

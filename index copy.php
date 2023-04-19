@@ -1,9 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login V3</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+<!-- !PAGE CONTENT! -->
+
+<?php
+include("header.php");
+
+if(isset($_SESSION[user_id]))
+{
+  echo "<script>window.location='dashboard.php';</script>";
+}
+if(isset($_POST["btnlogin"]))
+{
+  $pwd = md5($_POST[password]);
+  $sql  = "SELECT * FROM usertb where login_id='$_POST[loginid]' AND password='$pwd' and status='Active'";
+  $qsql = mysqli_query($con,$sql);
+  if(mysqli_num_rows($qsql) ==1)
+  {
+    $rs = mysqli_fetch_array($qsql);
+    $_SESSION[user_id] = $rs[user_id];
+    echo "<script>window.location='dashboard.php';</script>";
+  }
+  else
+  {
+    echo "<script>alert('Inavalid login credentials entered..');</script>";
+  }
+}
+?>
+
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -26,52 +49,57 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-</head>
-<body>
+  
+<!-- !PAGE CONTENT! -->
+<div  style="max-width:100%;">
+  <hr id="about">
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32 w3-center" style="background-image:  url('images/1.jpg'); height: 700px; background-position: center,width:100%;
+  background-repeat: no-repeat;
+  background-size: cover;  position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0; width: 100%" >  
+    <!-- <div class="w3-padding-32" style="background-color:white;width: 520px;margin-top: 15%; margin-left: 30%;">
+      <h4><b>Login Panel</b></h4>
+      <h6><i>Kindly enter Login ID and Password to Login</i></h6>
+      <p> -->
 
-<?php
-	session_start();
-	error_reporting(0);
-	$dt = date("Y-m-d");
-	include('dbconnection.php');
-	if(isset($_SESSION[customer_id]))
-	{
-		$sqlcustomer  = "SELECT  * FROM customertb WHERE customer_id='$_SESSION[customer_id]'";
-		$qsqlcustomer = mysqli_query($con,$sqlcustomer);
-		$rscustomer  = mysqli_fetch_array($qsqlcustomer);
-	}
-	if(isset($_SESSION[user_id]))
-	{
-		$sqluser = "SELECT  * FROM usertb WHERE user_id='$_SESSION[user_id]'";
-		$qsqluser = mysqli_query($con,$sqluser);
-		$rsuser  = mysqli_fetch_array($qsqluser);
-	}
-	if(isset($_SESSION[user_id]))
-	{
-		echo "<script>window.location='dashboard.php';</script>";
-	}
-	if(isset($_POST["btnlogin"]))
-	{
-		$pwd = md5($_POST[password]);	
-		$sql  = "SELECT * FROM usertb where login_id='$_POST[loginid]' AND password='$pwd' and status='Active'";
-		$qsql = mysqli_query($con,$sql);
-		if(mysqli_num_rows($qsql) ==1)
-		{
-		$rs = mysqli_fetch_array($qsql);
-		$_SESSION[user_id] = $rs[user_id];
-		echo "<script>window.location='dashboard.php';</script>";
-		}
-		else
-		{
-		echo "<script>alert('Inavalid login credentials entered..');</script>";
-		}
-	}
-?>
 	
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/1.jpg');">
+      <form method="post" action="">
+      <?php
+    include("datatables.php");
+    ?>
+           <!-- <center> <table id="example" class="table table-striped table-bordered" cellspacing="0" style="width:500px;">
+              <tbody>
+                <tr>
+                  <th width="166" scope="row">Login ID</th>
+                  <td width="176">&nbsp;<input type="text" name="loginid"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Password</th>
+                  <td>&nbsp;<input type="password" name="password"></td>
+                </tr>
+                <tr>
+                  <th colspan="2" scope="row">&nbsp;<input type="submit" name="btnlogin" value="Click Here to Login"></th>
+                  </tr>
+              </tbody>
+            </table>
+            </center> -->
+    <!-- </form>
+      </p>
+    </div> -->
+  </div>
+  <!-- <hr> -->
+<?php
+//include("footer.php");
+?> 
+
+
+<div class="limiter">
+		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="post" action="">
+				<form class="login100-form validate-form">
 					<!-- <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span> -->
@@ -81,12 +109,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="loginid" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -94,11 +122,11 @@
 						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 						<label class="label-checkbox100" for="ckb1">
 							Remember me
-						</label>  
+						</label>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit" name="btnlogin">
+						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -114,10 +142,10 @@
 	</div>
 	
 
-	<div id="dropDownSelect1"></div>
-	
+	<!-- <div id="dropDownSelect1"></div> -->
+
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -132,6 +160,3 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
-</body>
-</html>
