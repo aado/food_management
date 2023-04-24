@@ -191,9 +191,13 @@ body {font-family: "Lato", sans-serif;}
       </thead>
       <tbody>
       </tbody>
-      <tfoot>
-        <tr width="40%">Total</tr>
-        <tr width="10%">0</tr>
+      <tfoot id="overall">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td width="10%">0</td>
+      </tr>
       </tfoot>
     </table>
     <?php
@@ -247,78 +251,6 @@ function addToCart(e) {
 </html> 
 
 
-
-
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;">
-<!-- <div class="row">
-  <h1 style="text-align:center;text-align: center;color: #761dc9;"> MENU </h1>
-	<div class="row" style="position: absolute;left: 45px;margin-top: 60px;width: 40%;">
-		<div class="col-4">
-			<div class="list-group" id="myList" role="tablist">
-			<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Category</a>
-			<a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-			<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-			<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-			<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
-			</div>
-		</div>
-		<div class="col-8">
-			<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-			<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-			<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-			<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-			</div>
-		</div>
-	</div>
-  <div class="row">
-    <?php
-    //   $sql= "SELECT * FROM itemtb WHERE status='Active'";  
-    //   $qsql = mysqli_query($con,$sql);
-    //   while($rs = mysqli_fetch_array($qsql))
-    //   {   
-    ?>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 food-item">
-          <form method="post" action="cart.php?action=add&id=<?php echo $rs["item_id"]; ?>">
-            <input type="hidden" name="item_name" value="<?php echo $rs["item_name"]; ?>">
-            <input type="hidden" name="item_cost" value="<?php echo $rs["item_cost"]; ?>">
-            <input type="hidden" name="item_id" value="<?php echo $rs["item_id"]; ?>">
-            <div class="card rounded-0" align="center";>                      
-              <div class="food-img-holder position-relative overflow-hidden">
-              <!-- <img src="<?php echo $rs["images"]; ?>" class="img-top"> -->
-              <!-- </div>
-              <div class="card-body">
-                <div class="lh-1">
-					<img src='itemimg/<?php echo $rs["item_img"]; ?>' style="width: 240px;height: 153px;margin-bottom: 10px;">
-                  <div class="card-title fw-bold h5 mb-0"><?php echo $rs["item_name"]; ?></div>
-                  <div class="card-description text-muted"><small><?php echo $rs["description"]; ?></small></div>
-                  <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rs["item_cost"]; ?></small></div>
-                  <div class="d-grid" style="margin-top: 10px;">
-                  <div class="input-group input-sm">
-                    <span class="input-group-text rounded-0">Quantity</span>
-                    <input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
-                  </div>
-                  <input type="submit" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" value="Add to Cart">
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </form>    
-        </div> -->
-        <?php
-        // }
-        ?>
-  </div>
-<script>
-	// $('#myList a').on('click', function (e) {
-	// 	e.preventDefault()
-	// 	$(this).tab('show')
-	// })
-
-</script>
 <?php
 include("footer.php");
 ?>
