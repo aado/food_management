@@ -190,13 +190,15 @@ body {font-family: "Lato", sans-serif;}
       </tr>
       </thead>
     </table>
-      <div id="ordersPlace"></div>   
-      </div>    
+      <div id="ordersPlace" style="float: right;margin-right: 30%;">
+        <span><h5>TOTAL:</h5></span>
+      </div>   
+      
     <?php
     }
     ?>  
 
-
+ </div>   
 </div>
 </div>
 <!-- 
