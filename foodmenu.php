@@ -114,7 +114,7 @@ body {font-family: "Lato", sans-serif;}
                     <span class="input-group-text rounded-0">Quantity</span>
                     <input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
                   </div>
-                  <input type="submit" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" value="Add to Cart">
+                  <input type="button" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" data-name='<?php echo $rsitem["item_name"]; ?>' data-id='<?php echo $rsitem["item_id"]; ?>' data-cost='<?php echo $rsitem["item_cost"]; ?>' value="Add to Cart" onclick="addToCart(this)">
                   </div>
                 </div>
               </div>
@@ -178,7 +178,8 @@ body {font-family: "Lato", sans-serif;}
       <div class="container">
         <div class="jumbotron py-5 my-5">
         <h3 class='text-center'> No orders yet?     
-        </div>      
+        </div>   
+        <div id="ordersPlace"></div>   
       </div>    
     <?php
     }
@@ -197,7 +198,7 @@ body {font-family: "Lato", sans-serif;}
   <h3>Tokyo</h3>
   <p>Tokyo is the capital of Japan.</p>
 </div> -->
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script>
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -215,6 +216,15 @@ function openCity(evt, cityName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+function addToCart(e) {
+  // alert(name +' '+cost);
+  console.log($(e).attr('data-name'));
+  console.log($(e).attr('data-cost'));
+  console.log($(e).attr('data-id'));
+  console.log($("#quantity").val());
+  $("#ordersPlace").append('<span style="display: block">'+$(e).attr('data-name')+' '+$("#quantity").val()+ ' '+ $(e).attr('data-cost')+'</span>');
+}
 </script>
    
 </body>
