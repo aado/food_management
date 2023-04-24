@@ -196,13 +196,11 @@ body {font-family: "Lato", sans-serif;}
         <tr width="10%">0</tr>
       </tfoot>
     </table>
-      <!-- <div id="ordersPlace"></div>    -->
-      </div>    
     <?php
     }
     ?>  
 
-
+ </div>   
 </div>
 </div>
 <!-- 
