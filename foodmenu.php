@@ -64,7 +64,10 @@ body {font-family: "Lato", sans-serif;}
 <h2>Menu</h2>
 <p>Please Pick delicious menu for order</p>
 </div style="margin-left: 30px;">
-<div class="tab"  style="margin-left: 30px;">
+
+<div class="row">
+  <div class="col-8">
+<div class="tab"  style="margin-left: 30px;width: 20%;">
 	<?php
 		$sql= "SELECT * FROM categorytb WHERE main_catid=0";  
 		$qsql = mysqli_query($con,$sql);
@@ -125,6 +128,65 @@ body {font-family: "Lato", sans-serif;}
   </div>
 </div>
 <?php } ?>
+</div>
+<div class="col">
+  <h4><u> ORDER DETAILS </u></h4>
+
+  <?php
+    if(!empty($_SESSION["cart"])){
+    ?>      
+      <h3>Your Cart</h3>    
+      <table class="table table-striped table-bordered">
+       <thead class="thead-dark">
+      <tr>
+      <th width="40%">Food Name</th>
+      <th width="10%">Quantity</th>
+      <th width="20%">Price Details</th>
+      <th width="15%">Order Total</th>
+      <th width="5%">Action</th>
+      </tr>
+      </thead>
+      <?php
+      $total = 0;
+      foreach($_SESSION["cart"] as $keys => $values){
+      ?>
+        <tr>
+        <td><?php echo $values["item_name"]; ?></td>
+        <td class="text-center"><?php echo $values["item_quantity"] ?></td>
+        <td class="text-end">$ <?php echo $values["item_price"]; ?></td>
+        <td class="text-end">$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
+        <td><a href="cart.php?action=delete&id=<?php echo $values["food_id"]; ?>" onclick="if(confirm('Are you sure to remove this item from cart list?') === false) { event.preventDefault() }"><span class="text-danger text-decoration-none">Remove</span></a></td>
+        </tr>
+        <?php 
+        $total = $total + ($values["item_quantity"] * $values["item_price"]);
+      }
+      ?>
+      <tr>
+      <td colspan="3" class="text-end">Total</td>
+      <td class="text-end">$ <?php echo number_format($total, 2); ?></td>
+      <td></td>
+      </tr>
+      </table>
+      <div class="text-end">
+        <a href="cart.php?action=empty"><button class="rounded-0 btn btn-danger"><span class="fa fa-trash"></span> Empty Cart</button></a>
+        <a href="index.php"><button class="rounded-0 btn btn-warning">Add more items</button></a>
+        <a href="checkout.php"><button class="rounded-0 btn btn-success pull-right"><span class="fa fa-share-alt"></span> Check Out</button></a>
+      </div>
+    <?php
+    } elseif(empty($_SESSION["cart"])){
+    ?>
+      <div class="container">
+        <div class="jumbotron py-5 my-5">
+        <h3 class='text-center'> No orders yet?     
+        </div>      
+      </div>    
+    <?php
+    }
+    ?>  
+
+
+</div>
+</div>
 <!-- 
 <div id="Paris" class="tabcontent">
   <h3>Paris</h3>
