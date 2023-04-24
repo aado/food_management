@@ -19,7 +19,7 @@ body {font-family: "Lato", sans-serif;}
   border: 1px solid #ccc;
   background-color: #4b71f9;
   width: 15%;
-  height: 300px;
+  height: inherit;
 }
 
 /* Style the buttons inside the tab */
@@ -85,7 +85,7 @@ body {font-family: "Lato", sans-serif;}
 	while($rs = mysqli_fetch_array($qsqlcat))
 	{   
 ?>
-<div id="<?php echo $rs['category_id']; ?>" class="tabcontent">
+<div id="<?php echo $rs['category_id']; ?>" class="tabcontent" style="height:inherit;">
   <h3><?php echo $rs['cat_name']; ?></h3>
   <div class="row">
     <?php
@@ -114,7 +114,7 @@ body {font-family: "Lato", sans-serif;}
                     <span class="input-group-text rounded-0">Quantity</span>
                     <input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
                   </div>
-                  <input type="button" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" data-name='<?php echo $rsitem["item_name"]; ?>' data-id='<?php echo $rsitem["item_id"]; ?>' data-cost='<?php echo $rsitem["item_cost"]; ?>' value="Add to Cart" onclick="addToCart(this)">
+                  <input type="button" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" data-name='<?php echo $rsitem["item_name"]; ?>' data-id='<?php echo $rsitem["item_id"]; ?>' data-cost='<?php echo $rsitem["item_cost"]; ?>'  data-total='<?php echo $rsitem["item_cost"]; ?> * <?php echo $rsitem["quantity"]; ?>' value="Add to Cart" onclick="addToCart(this)">
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@ body {font-family: "Lato", sans-serif;}
 </div>
 <?php } ?>
 </div>
-<div class="col">
+<div class="col" style="margin-left:30px;">
   <h4><u> ORDER DETAILS </u></h4>
 
   <?php
@@ -176,10 +176,21 @@ body {font-family: "Lato", sans-serif;}
     } elseif(empty($_SESSION["cart"])){
     ?>
       <div class="container">
-        <div class="jumbotron py-5 my-5">
-        <h3 class='text-center'> No orders yet?     
+        <!-- <div class="jumbotron py-5 my-5"> -->
+        <!-- <h3 class='text-center'> No orders yet?      -->
         </div>   
-        <div id="ordersPlace"></div>   
+        <table class="table table-striped table-bordered" id="orders" style="width:100%">
+       <thead class="thead-dark">
+      <tr>
+      <th width="40%">Food Name</th>
+      <th width="10%">Quantity</th>
+      <th width="20%">Price Details</th>
+      <th width="15%">Order Total</th>
+      <th width="5%">Action</th>
+      </tr>
+      </thead>
+    </table>
+      <div id="ordersPlace"></div>   
       </div>    
     <?php
     }
@@ -223,7 +234,8 @@ function addToCart(e) {
   console.log($(e).attr('data-cost'));
   console.log($(e).attr('data-id'));
   console.log($("#quantity").val());
-  $("#ordersPlace").append('<span style="display: block">'+$(e).attr('data-name')+' '+$("#quantity").val()+ ' '+ $(e).attr('data-cost')+'</span>');
+  var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
+  $("#orders").append('<tbody><tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+$(e).attr('data-total')+'</td></tr></tbody>');
 }
 </script>
    
