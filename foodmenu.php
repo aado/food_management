@@ -189,8 +189,14 @@ body {font-family: "Lato", sans-serif;}
       <th width="5%">Action</th>
       </tr>
       </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr width="40%">Total</tr>
+        <tr width="10%">0</tr>
+      </tfoot>
     </table>
-      <div id="ordersPlace"></div>   
+      <!-- <div id="ordersPlace"></div>    -->
       </div>    
     <?php
     }
@@ -235,7 +241,7 @@ function addToCart(e) {
   console.log($(e).attr('data-id'));
   console.log($("#quantity").val());
   var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
-  $("#orders").append('<tbody><tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td></tr></tbody>');
+  $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td></tr>');
 }
 </script>
    
