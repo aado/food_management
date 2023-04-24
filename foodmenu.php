@@ -257,7 +257,7 @@ function sumColumn(index) {
   $("#orders tfoot tr td#totalOrder").html(0);
   var total = 0;
   $("td:nth-child(" + index + ")").each(function() {
-    total += parseInt($(this).text()) || 0;
+    total += parseFloat($(this).text()) || 0;
     console.log(total);
   });  
   return total.toFixed(2);
