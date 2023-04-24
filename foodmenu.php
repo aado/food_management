@@ -235,7 +235,7 @@ function addToCart(e) {
   console.log($(e).attr('data-id'));
   console.log($("#quantity").val());
   var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
-  $("#orders").append('<tbody><tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+$(e).attr('data-total')+'</td></tr></tbody>');
+  $("#orders").append('<tbody><tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td></tr></tbody>');
 }
 </script>
    
