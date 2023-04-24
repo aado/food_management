@@ -196,7 +196,7 @@ body {font-family: "Lato", sans-serif;}
           <td></td>
           <td></td>
           <td>Total</td>
-          <td width="10%">0</td>
+          <td width="10%" id="totalOrder">0</td>
       </tr>
       </tfoot>
     </table>
@@ -219,6 +219,10 @@ body {font-family: "Lato", sans-serif;}
 </div> -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script>
+  $(function() {
+  // $("#subtotal").html(sumColumn(4));
+  // $("#totalOrder").html(sumColumn(4));
+});
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -236,6 +240,7 @@ function openCity(evt, cityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
+// Add to cart
 function addToCart(e) {
   // alert(name +' '+cost);
   console.log($(e).attr('data-name'));
@@ -244,7 +249,18 @@ function addToCart(e) {
   console.log($("#quantity").val());
   var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
   $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td></tr>');
+  $("#orders tfoot tr td#totalOrder").html(sumColumn(4));
 }
+
+// Total Order
+function sumColumn(index) {
+  var total = 0;
+  $("td:nth-child(" + index + ")").each(function() {
+    total += parseInt($(this).text(), 10) || 0;
+  });  
+  return total.toFixed(2);
+}
+
 </script>
    
 </body>
