@@ -203,7 +203,7 @@ function addToCart(e) {
   console.log($(e).attr('data-id'));
   console.log($("#quantity").val());
   var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
-  $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td></tr>');
+  $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td><td style="text-align: center"><i class="fa fa-trash"></i></td></tr>');
   $("#orders tfoot tr td#totalOrder").html(sumColumn(4));
 }
 
