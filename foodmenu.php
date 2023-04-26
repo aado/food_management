@@ -60,7 +60,7 @@ body {font-family: "Lato", sans-serif;}
 </head>
 <body>
 <br>
-<div  style="margin-left: 30px;">
+<div style="margin-left: 30px;">
 <h2>Menu</h2>
 <p>Please Pick delicious menu for order</p>
 </div style="margin-left: 30px;">
@@ -156,12 +156,35 @@ body {font-family: "Lato", sans-serif;}
       </tr>
       </tfoot>
     </table>
-    <div style="">
-    <button type="button" style="margin-left:40%;" class="btn btn-warning btn-lg"> Checkout </button>
+    <div>
+        <button type="button" id="Checkout" style="margin-left:40%;" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#Checkoutbtn">
+          Checkout
+        </button>
     </div>
  </div>   
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Checkoutbtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 <!-- 
 <div id="Paris" class="tabcontent">
   <h3>Paris</h3>
@@ -173,6 +196,7 @@ body {font-family: "Lato", sans-serif;}
   <p>Tokyo is the capital of Japan.</p>
 </div> -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+
 <script>
   $(function() {
   // $("#subtotal").html(sumColumn(4));
