@@ -116,26 +116,35 @@
     <div class="col">
       <h4 style="text-align:center;"><b><u>Transactions</u></b></h4>
       <table id="dataorders" class="table table-striped" style="width:100%">
+
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Order Date</th>
+                <th>Customer ID</th>
+                <th> Amount </th>
+                <th> Status </th>
+                <th> Cashier</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
-            </tr>
-        </tbody>
+        <?php
+        $sql= "SELECT * FROM billingtb";  
+        $qsql = mysqli_query($con,$sql);
+        while($rs = mysqli_fetch_array($qsql))
+        {
+    
+  $sqlmaincat = "SELECT * FROM orderdetailstb WHERE customer_id='$rs[customer_id]'";
+  $qsqlmaincat = mysqli_query($con,$sqlmaincat);
+  $rsmaincat = mysqli_fetch_array($qsqlmaincat);
+  echo "<tr>
+    <td>&nbsp;$rs[order_date]</td>
+    <td>&nbsp;$rs[customer_id]</td>
+    <td>&nbsp;₱ $rs[other_cost]</td>
+   <td>&nbsp; $rs[status]</td>
+    <td> </td>
+   
+  </tr>";
+}
+?>
       </table>
     </div>
   </div>

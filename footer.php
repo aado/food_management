@@ -20,6 +20,7 @@
 <script type='text/javascript'>
     $(document).ready(function () {
     $('#dataorders').DataTable();
+    
 });
 
     $( document ).ready(function() {
