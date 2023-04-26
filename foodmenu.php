@@ -112,7 +112,7 @@ body {font-family: "Lato", sans-serif;}
                   <div class="d-grid" style="margin-top: 10px;">
                   <div class="input-group input-sm">
                     <span class="input-group-text rounded-0">Quantity</span>
-                    <input type="number" class="form-control rounded-0 text-center" id="quantity" name="quantity" value="1" required="required">
+                    <input type="number" class="form-control rounded-0 text-center" id="quantity<?php echo $rsitem["item_id"]; ?>" name="quantity<?php echo $rsitem["item_id"]; ?>" value="1" required="required">
                   </div>
                   <input type="button" name="add" style="margin-top:5px;" class="btn btn-primary btn-sm rounded-0" data-name='<?php echo $rsitem["item_name"]; ?>' data-id='<?php echo $rsitem["item_id"]; ?>' data-cost='<?php echo $rsitem["item_cost"]; ?>'  data-total='<?php echo $rsitem["item_cost"]; ?> * <?php echo $rsitem["quantity"]; ?>' value="Add to Cart" onclick="addToCart(this)">
                   </div>
@@ -157,7 +157,7 @@ body {font-family: "Lato", sans-serif;}
       </tfoot>
     </table>
     <div>
-        <button type="button" id="Checkout" style="margin-left:40%;" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#Checkoutbtn">
+        <button type="button" id="Checkout" style="margin-left:40%;" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#Checkoutbtn" onclick="getTotalCheckout()">
           Checkout
         </button>
     </div>
@@ -170,15 +170,23 @@ body {font-family: "Lato", sans-serif;}
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Check Out</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <input type="text" class="form-control" id="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+        <span style="display: block;margin-top: 30px;"> 
+          <label style="display: block;text-align: center;font-size: 12px;">Total Amount</label>
+          <label id="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
+        </span>
+		<span style="display: block;margin-top: 30px;"> 
+          <label style="display: block;text-align: center;font-size: 12px;">Change</label>
+          <label id="change" style="display: block;text-align: center;font-size: 55px;">0</label>
+        </span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
@@ -198,10 +206,12 @@ body {font-family: "Lato", sans-serif;}
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 
 <script>
-  $(function() {
-  // $("#subtotal").html(sumColumn(4));
-  // $("#totalOrder").html(sumColumn(4));
-});
+	$(function() {
+		$("#cashAmount").on("keydown keyup", function(event) {
+			console.log(1);
+			$("#change").html(parseFloat(parseFloat($("#cashAmount").val()) - parseFloat($("#totalAmount").text())).toFixed(2));
+		});
+	});
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -222,12 +232,12 @@ document.getElementById("defaultOpen").click();
 // Add to cart
 function addToCart(e) {
   // alert(name +' '+cost);
-  console.log($(e).attr('data-name'));
-  console.log($(e).attr('data-cost'));
-  console.log($(e).attr('data-id'));
-  console.log($("#quantity").val());
-  var total = $("#quantity").val() * parseFloat($(e).attr('data-cost'));
-  $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity").val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td><td style="text-align: center"><i class="fa fa-trash"></i></td></tr>');
+//   console.log($(e).attr('data-name'));
+//   console.log($(e).attr('data-cost'));
+//   console.log($(e).attr('data-id'));
+//   console.log($("#quantity"+$(e).attr('data-id')).val());
+  var total = $("#quantity"+$(e).attr('data-id')).val() * parseFloat($(e).attr('data-cost'));
+  $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity"+$(e).attr('data-id')).val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td><td style="text-align: center"><i class="fa fa-trash"></i></td></tr>');
   $("#orders tfoot tr td#totalOrder").html(sumColumn(4));
 }
 
@@ -240,6 +250,11 @@ function sumColumn(index) {
     console.log(total);
   });  
   return total.toFixed(2);
+}
+
+//get total checkout
+function getTotalCheckout() {
+  $("#totalAmount").html($("#totalOrder").text());
 }
 
 </script>
