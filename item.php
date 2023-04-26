@@ -1,4 +1,5 @@
 <?php
+include("main_header.php");
 include("header.php");
 if($_POST[randomid] == $_SESSION[randomid])
 {
@@ -107,6 +108,10 @@ if(isset($_GET[editid]))
               <td scope="row"><input type="text" name="itemcost" id="itemcost" value="<?php echo $rsedit[item_cost]; ?>" required="required" oninvalid="setCustomValidity('Please enter item cost.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
             </tr>
             <tr>
+              <th scope="row">Quantity</th>
+              <td scope="row"><input type="text" name="itemcost" id="itemcost" value="<?php echo $rsedit[item_cost]; ?>" required="required" oninvalid="setCustomValidity('Please enter item cost.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
+            </tr>
+            <!-- <tr>
               <th scope="row">Discount type</th>
               <td scope="row">
               <select name="discounttype">
@@ -127,7 +132,7 @@ if(isset($_GET[editid]))
 			  ?>
               </select>
               </td>
-            </tr>
+            </tr> 
             <tr>
               <th scope="row">Discount amount</th>
               <td scope="row"><input type="text" name="discount_amt" id="discount_amt" value="<?php echo $rsedit[discount_amt]; ?>" ></td>
@@ -135,7 +140,7 @@ if(isset($_GET[editid]))
             <tr>
               <th scope="row">Image</th>
               <td scope="row"><input type="file" name="image" id="image" required="required" oninvalid="setCustomValidity('Please select file.')" onchange="try{setCustomValidity('')}catch(e){}" accept="image/*"></td>
-            </tr>
+            </tr>-->
             <tr>
               <th scope="row">Status</th>
               <td scope="row"><label for="status2"></label>
