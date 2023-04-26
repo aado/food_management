@@ -12,6 +12,14 @@ if($_POST[randomid] == $_SESSION[randomid])
 			{
 				$sql= "UPDATE itemtb  SET category_id='$_POST[category]',item_name='$_POST[itemname]',item_discription='$_POST[itemdescription]',item_cost='$_POST[itemcost]',item_img='$imgname',status='$_POST[status]',discount_type='$_POST[discounttype]',discount_amt='$_POST[discount_amt]' WHERE item_id='$_GET[editid]'";
 				$qsql = mysqli_query($con,$sql);
+
+				if($qsql == 1)
+				{
+					$sql= "INSERT INTO `stocktb`(`stock_id`, `stock_type`, `item_id`, `date`, `qty`, `status`) VALUES ('$_POST[stock_id]', '$_POST[stock_type]', '$_POST[item_id]',date('Y-m-d'), '$_POST[qty]', '$_POST[status]')";
+				$qsql = mysqli_query($con,$sql);
+				}
+
+
 				if(!$qsql)
 				{
 					echo mysqli_error($con);
@@ -109,7 +117,7 @@ if(isset($_GET[editid]))
             </tr>
             <tr>
               <th scope="row">Quantity</th>
-              <td scope="row"><input type="text" name="itemcost" id="itemcost" value="<?php echo $rsedit[item_cost]; ?>" required="required" oninvalid="setCustomValidity('Please enter item cost.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
+              <td scope="row"><input type="text" name="qty" id="qty" value="<?php echo $rsedit[item_cost]; ?>" required="required" oninvalid="setCustomValidity('Please enter item quantity.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
             </tr>
             <!-- <tr>
               <th scope="row">Discount type</th>

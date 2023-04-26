@@ -67,14 +67,15 @@ body {font-family: "Lato", sans-serif;}
 
 <div class="row">
   <div class="col-8">
-<div class="tab"  style="margin-left: 30px;width: 20%;">
+<div class="tab" style="margin-left: 30px;width: 20%;">
 	<?php
 		$sql= "SELECT * FROM categorytb WHERE main_catid=0";  
 		$qsql = mysqli_query($con,$sql);
 		while($rs = mysqli_fetch_array($qsql))
 		{   
 	?>
-		<button class="tablinks" onclick="openCity(event, '<?php echo $rs['category_id']; ?>')" id="defaultOpen"><?php echo $rs["cat_name"]; ?></button>
+		<button class="tablinks" onclick="openCity(event, '<?php echo $rs['category_id']; ?>')" id="defaultOpen">
+      <span style="width:100%"><?php echo $rs["cat_name"]; ?></span></button>
 		<!-- <button class="tablinks" onclick="openCity(event, 'Paris')">Cat2</button> -->
 		<!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">Cat1</button> -->
   	<?php }  ?>
@@ -129,12 +130,8 @@ body {font-family: "Lato", sans-serif;}
 </div>
 <?php } ?>
 </div>
-<div class="col" style="margin-right:1%;">
-  <h4><u> ORDER DETAILS </u></h4>
-      <div class="container">
-        <!-- <div class="jumbotron py-5 my-5"> -->
-        <!-- <h3 class='text-center'> No orders yet?      -->
-        </div>   
+<div class="col" style="margin-right:2%;width: 100%;">
+  <h4><u> ORDER DETAILS </u></h4>  
         <table class="table table-striped table-bordered" id="orders" style="width:100%">
        <thead class="thead-dark">
       <tr>
@@ -176,11 +173,11 @@ body {font-family: "Lato", sans-serif;}
       <div class="modal-body">
         <input type="text" class="form-control" id="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
         <span style="display: block;margin-top: 30px;"> 
-          <label style="display: block;text-align: center;font-size: 12px;">Total Amount</label>
+          <label style="display: block;text-align: center;font-size: 14px;"><b>Total Amount</b></label>
           <label id="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
         </span>
 		<span style="display: block;margin-top: 30px;"> 
-          <label style="display: block;text-align: center;font-size: 12px;">Change</label>
+          <label style="display: block;text-align: center;font-size: 14px;"><b>Change</b></label>
           <label id="change" style="display: block;text-align: center;font-size: 55px;">0</label>
         </span>
       </div>
