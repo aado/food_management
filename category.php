@@ -1,5 +1,7 @@
 <?php
+include("main_header.php");
 include("header.php");
+
 if($_POST[randomid] == $_SESSION[randomid])
 {
 	if(isset($_POST[submit]))

@@ -58,9 +58,7 @@ if(isset($_GET[delid]))
     </div>
   </div>
   <hr>
-<?php
-include("footer.php");
-?>
+
 <?php
 include("datatables.php");
 ?>
@@ -77,3 +75,7 @@ function deleteconfirm()
 	}
 }
 </script>
+
+<?php
+include("footer.php");
+?>

@@ -64,9 +64,8 @@ while($rs = mysqli_fetch_array($qsql))
     </div>
   </div>
   <hr>
-<?php
-include("footer.php");
-?>
+</div>
+
 <?php
 include("datatables.php");
 ?>
@@ -83,3 +82,7 @@ function deleteconfirm()
 	}
 }
 </script>
+
+<?php
+include("footer.php");
+?>
