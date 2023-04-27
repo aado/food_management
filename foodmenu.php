@@ -231,11 +231,6 @@ document.getElementById("defaultOpen").click();
 
 // Add to cart
 function addToCart(e) {
-  // alert(name +' '+cost);
-//   console.log($(e).attr('data-name'));
-//   console.log($(e).attr('data-cost'));
-//   console.log($(e).attr('data-id'));
-//   console.log($("#quantity"+$(e).attr('data-id')).val());
   var total = $("#quantity"+$(e).attr('data-id')).val() * parseFloat($(e).attr('data-cost'));
   $("#orders tbody").append('<tr><td>'+$(e).attr('data-name')+'</td><td>'+$("#quantity"+$(e).attr('data-id')).val()+'</td><td>'+$(e).attr('data-cost')+'</td><td>'+total.toFixed(2)+'</td><td style="text-align: center"><i class="fa fa-trash"></i></td></tr>');
   $("#orders tfoot tr td#totalOrder").html(sumColumn(4));
