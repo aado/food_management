@@ -170,21 +170,29 @@ body {font-family: "Lato", sans-serif;}
         <h1 class="modal-title fs-5" id="exampleModalLabel">Check Out</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" id="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+       <form action="checkout.php" method="POST">
+
+        <div class="modal-body">
+         
+
+           <input type="hidden" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+
+           <input type="text" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+        <input type="text" class="form-control" id="cashAmount" name="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
         <span style="display: block;margin-top: 30px;"> 
           <label style="display: block;text-align: center;font-size: 14px;"><b>Total Amount</b></label>
-          <label id="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
+          <label id="totalAmount" name="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
         </span>
-		<span style="display: block;margin-top: 30px;"> 
+        <span style="display: block;margin-top: 30px;"> 
           <label style="display: block;text-align: center;font-size: 14px;"><b>Change</b></label>
           <label id="change" style="display: block;text-align: center;font-size: 55px;">0</label>
         </span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="insertbilling" class="btn btn-info">SAVE</button>
       </div>
+    </form>
     </div>
   </div>
 </div>

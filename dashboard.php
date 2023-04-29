@@ -20,9 +20,15 @@
               <p></p>
               <div class="h5 mb-0 font-weight-bold text-gray-800">
               <?php 
-                $sql = "SELECT * FROM stocktb WHERE status='Active'";
-                $qsql = mysqli_query($con,$sql);
-                  echo mysqli_num_rows($qsql);
+                $sql = "SELECT SUM(qty) AS TOTALSTOCKS FROM `stocktb` WHERE status='Active'";
+                // $qsql = mysqli_query($con,$sql);
+                  // echo mysqli_num_rows($qsql);
+
+                $result = mysqli_query($con,$sql);
+                while($row = mysqli_fetch_array($result)) {
+    echo $row['TOTALSTOCKS']; // Print a single column data
+    // echo print_r($row);       // Print the entire row data
+}
               ?>
             </div>
           </div>
@@ -71,9 +77,15 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800">
                 ₱ 
                 <?php 
-                  $sql = "SELECT * FROM stocktb WHERE status='Active'";
-                  $qsql = mysqli_query($con,$sql);
-                  echo mysqli_num_rows($qsql);
+                  $sql = "SELECT SUM(other_cost) AS totalsales,bill_date FROM `billingtb` where bill_date=CURRENT_DATE;";
+                // $qsql = mysqli_query($con,$sql);
+                  // echo mysqli_num_rows($qsql);
+
+                $result = mysqli_query($con,$sql);
+                while($row = mysqli_fetch_array($result)) {
+    echo $row['totalsales']; // Print a single column data
+    // echo print_r($row);       // Print the entire row data
+}
                 ?>
               </div>
           </div>
@@ -97,9 +109,15 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800">
                 ₱ 
                 <?php 
-                  $sql = "SELECT * FROM stocktb WHERE status='Active'";
-                  $qsql = mysqli_query($con,$sql);
-                  echo mysqli_num_rows($qsql);
+                 $sql = "SELECT SUM(other_cost) AS totalsales,bill_date FROM `billingtb` where bill_date=CURRENT_DATE;";
+                // $qsql = mysqli_query($con,$sql);
+                  // echo mysqli_num_rows($qsql);
+
+                $result = mysqli_query($con,$sql);
+                while($row = mysqli_fetch_array($result)) {
+    echo $row['totalsales']; // Print a single column data
+    // echo print_r($row);       // Print the entire row data
+}
                 ?>
               </div>
           </div>

@@ -89,6 +89,7 @@ while($rs = mysqli_fetch_array($qsql))
 	}
 	
 	$sqlstocktb = "SELECT * FROM stocktb WHERE stock_type='Stock' AND item_id='$rs[item_id]' ";
+
 	if(isset($_GET[stkdate]))
 	{
 	$sqlstocktb   = $sqlstocktb  . " AND date='$_GET[stkdate]' ";
@@ -97,6 +98,7 @@ while($rs = mysqli_fetch_array($qsql))
 	{
 	$sqlstocktb   = $sqlstocktb  . " AND date='$dt' ";		
 	}
+
 	$qsqlstocktb= mysqli_query($con,$sqlstocktb);
 	$rsstocktb = mysqli_fetch_array($qsqlstocktb);
 	
@@ -128,8 +130,9 @@ while($rs = mysqli_fetch_array($qsql))
 		{
 			echo " readonly ";
 		}
+
 	}
-	?> value="<?php echo $rsstocktb[qty]; ?>" >
+	?> value="<?php echo $rs[qty]; ?>" >
     
 <?php
 echo "</td>   <td>&nbsp;";

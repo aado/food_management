@@ -10,14 +10,17 @@ if($_POST[randomid] == $_SESSION[randomid])
 	{
 		if(isset($_GET[editid]))  
 			{
-				$sql= "UPDATE itemtb  SET category_id='$_POST[category]',item_name='$_POST[itemname]',item_discription='$_POST[itemdescription]',item_cost='$_POST[itemcost]',item_img='$imgname',status='$_POST[status]',discount_type='$_POST[discounttype]',discount_amt='$_POST[discount_amt]' WHERE item_id='$_GET[editid]'";
+				$sql= "UPDATE itemtb  SET category_id='$_POST[category]',item_name='$_POST[itemname]',item_discription='$_POST[itemdescription]',item_cost='$_POST[itemcost]',status='$_POST[status]'WHERE item_id='$_GET[editid]'";
+
+				$sql= "UPDATE stocktb SET qty='$_POST[qty]', status='$_POST[status]' WHERE item_id='$_GET[editid]'";
+				// $qsql1 = mysqli_query($con,$sql1);
 				$qsql = mysqli_query($con,$sql);
 
-				if($qsql == 1)
-				{
-					$sql= "INSERT INTO `stocktb`(`stock_id`, `stock_type`, `item_id`, `date`, `qty`, `status`) VALUES ('$_POST[stock_id]', '$_POST[stock_type]', '$_POST[item_id]',date('Y-m-d'), '$_POST[qty]', '$_POST[status]')";
-				$qsql = mysqli_query($con,$sql);
-				}
+				// if($qsql == 1)
+				// {
+				// 	$sql1= "INSERT INTO `stocktb`( `stock_type`, `item_id`, `date`, `qty`, `status`) VALUES ('$_POST[stock_type]', '$_POST[item_id]',date('Y-m-d'), '$_POST[qty]', '$_POST[status]')";
+				// $qsql1 = mysqli_query($con,$sql1);
+				// }
 
 
 				if(!$qsql)
@@ -26,13 +29,18 @@ if($_POST[randomid] == $_SESSION[randomid])
 				}
 				if(mysqli_affected_rows($con) == 1)
 				{
-					echo "<script>alert('Item record updated successfully..');</script>";
+
+						echo "<script>alert('Item record updated successfully..');</script>";
 					echo "<script>window.location='viewitem.php';</script>";
+					
 				}
 			}
 			else
 			{
 				$sql= "INSERT INTO itemtb(category_id,item_name,item_discription,item_cost,item_img,status,discount_type,discount_amt) VALUES('$_POST[category]','$_POST[itemname]','$_POST[itemdescription]','$_POST[itemcost]','$imgname','$_POST[status]','$_POST[discounttype]','$_POST[discount_amt]')";
+
+				$sql= "INSERT INTO `stocktb`( `stock_type`, `item_id`, `date`, `qty`, `status`) VALUES ('Stock', '$_POST[editid]',CURRENT_TIMESTAMP(), '$_POST[qty]', '$_POST[status]')";
+
 				$qsql = mysqli_query($con,$sql);
 				if(!$qsql)
 				{
@@ -49,9 +57,14 @@ if($_POST[randomid] == $_SESSION[randomid])
 $_SESSION[randomid]  = rand();
 if(isset($_GET[editid]))
 {
+
 	$sqledit = "SELECT * FROM itemtb WHERE item_id='$_GET[editid]'";
 	$qsqledit =mysqli_query($con,$sqledit);
 	$rsedit = mysqli_fetch_array($qsqledit);
+
+	$query = "SELECT * FROM stocktb WHERE item_id='$_GET[editid]'";
+	$queryedit =mysqli_query($con,$query);
+	$stockedit = mysqli_fetch_array($queryedit);
 }
 ?>
   <!-- About Section -->
@@ -117,7 +130,8 @@ if(isset($_GET[editid]))
             </tr>
             <tr>
               <th scope="row">Quantity</th>
-              <td scope="row"><input type="text" name="qty" id="qty" value="<?php echo $rsedit[item_cost]; ?>" required="required" oninvalid="setCustomValidity('Please enter item quantity.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
+              <td scope="row"><input type="text" name="qty" id="qty" value="<?php 
+              echo $stockedit[qty]; ?>" required="required" oninvalid="setCustomValidity('Please enter item quantity.')" onchange="try{setCustomValidity('')}catch(e){}"></td>
             </tr>
             <!-- <tr>
               <th scope="row">Discount type</th>
