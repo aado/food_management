@@ -173,7 +173,6 @@ body {font-family: "Lato", sans-serif;}
        <form action="checkout.php" method="POST">
 
         <div class="modal-body">
-         
 
            <input type="hidden" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>"  style="height: 70px;font-size: 55px;text-align: center;"/>
 
@@ -183,12 +182,13 @@ body {font-family: "Lato", sans-serif;}
            while($bno = mysqli_fetch_array($bill))
            {
            ?>
-           <input type="text" class="form-control" name="billno" value="<?php echo  $bno[bill_no]+1?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+           <input type="hidden" class="form-control" name="billno" value="<?php echo  ($bno[bill_no] + 1)?>" readonly/>
         <?php } ?>
         <input type="text" class="form-control" id="cashAmount" name="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
         <span style="display: block;margin-top: 30px;"> 
           <label style="display: block;text-align: center;font-size: 14px;"><b>Total Amount</b></label>
-          <label id="totalAmount" name="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
+          <label id="totalAmount" style="display: block;text-align: center;font-size: 55px;">0</label>
+          <input type="hidden" name="foodTotalAmt" id="foodTotalAmt" />
         </span>
         <span style="display: block;margin-top: 30px;"> 
           <label style="display: block;text-align: center;font-size: 14px;"><b>Change</b></label>
@@ -262,6 +262,7 @@ function sumColumn(index) {
 //get total checkout
 function getTotalCheckout() {
   $("#totalAmount").html($("#totalOrder").text());
+  $("#foodTotalAmt").val($("#totalOrder").text());
 }
 
 </script>
