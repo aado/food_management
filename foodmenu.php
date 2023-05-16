@@ -175,9 +175,16 @@ body {font-family: "Lato", sans-serif;}
         <div class="modal-body">
          
 
-           <input type="hidden" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+           <input type="hidden" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>"  style="height: 70px;font-size: 55px;text-align: center;"/>
 
-           <input type="text" class="form-control" name="onduty" value="<?php echo  $rsuser[name]?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+           <?php
+           $billsql = "SELECT * from billingtb";
+           $bill = mysqli_query($con,$billsql);
+           while($bno = mysqli_fetch_array($bill))
+           {
+           ?>
+           <input type="text" class="form-control" name="billno" value="<?php echo  $bno[bill_no]+1?>" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
+        <?php } ?>
         <input type="text" class="form-control" id="cashAmount" name="cashAmount" placeholder="Enter Cash" style="height: 70px;font-size: 55px;text-align: center;"/>
         <span style="display: block;margin-top: 30px;"> 
           <label style="display: block;text-align: center;font-size: 14px;"><b>Total Amount</b></label>
