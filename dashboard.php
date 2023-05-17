@@ -109,7 +109,7 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800">
                 ₱ 
                 <?php 
-                 $sql = "SELECT SUM(other_cost) AS totalsales,bill_date FROM `billingtb` where bill_date=CURRENT_DATE;";
+                 $sql = "SELECT SUM(bill_amount) AS totalsales,bill_date FROM `billingtb` where bill_date=CURRENT_DATE;";
                 // $qsql = mysqli_query($con,$sql);
                   // echo mysqli_num_rows($qsql);
 
@@ -156,14 +156,15 @@
   echo "<tr>
     <td>&nbsp;$rs[order_date]</td>
     <td>&nbsp;$rs[customer_id]</td>
-    <td>&nbsp;₱ $rs[other_cost]</td>
+    <td>&nbsp;₱ $rs[bill_amount]</td>
    <td>&nbsp; $rs[status]</td>
-    <td> </td>
+   <td>&nbsp; $rs[onduty]</td>
    
   </tr>";
 }
 ?>
       </table>
+
     </div>
   </div>
 
