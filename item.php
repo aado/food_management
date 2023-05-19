@@ -3,8 +3,12 @@ include("main_header.php");
 include("header.php");
 if($_POST[randomid] == $_SESSION[randomid])
 {
-	$imgname = rand() . $_FILES["image"]["name"];
-	move_uploaded_file($_FILES["image"]["tmp_name"], "itemimg/" . $imgname);
+	$imgname = '';
+	if(isset($_FILES["image"]["name"]) ){
+		
+		$imgname = rand() . $_FILES["image"]["name"];
+		move_uploaded_file($_FILES["image"]["tmp_name"], "itemimg/" . $imgname);
+	}
 
 	if(isset($_POST[submit]))
 	{
@@ -37,7 +41,11 @@ if($_POST[randomid] == $_SESSION[randomid])
 			}
 			else
 			{
-				$sql= "INSERT INTO itemtb(category_id,item_name,item_discription,item_cost,item_img,status,discount_type,discount_amt) VALUES('$_POST[category]','$_POST[itemname]','$_POST[itemdescription]','$_POST[itemcost]','$imgname','$_POST[status]','$_POST[discounttype]','$_POST[discount_amt]')";
+				print_r($_POST);
+				
+				// $sql= "INSERT INTO itemtb(category_id,item_name,item_discription,item_cost,item_img,discount_type,discount_amt) VALUES('$_POST[category]','$_POST[itemname]','$_POST[itemdescription]','$_POST[itemcost]','$imgname','$_POST[discounttype]','$_POST[discount_amt]')";
+
+				$sql= "INSERT INTO itemtb(category_id) VALUES('1')";
 
 				$sql= "INSERT INTO `stocktb`( `stock_type`, `item_id`, `date`, `qty`, `status`) VALUES ('Stock', '$_POST[editid]',CURRENT_TIMESTAMP(), '$_POST[qty]', '$_POST[status]')";
 
@@ -49,7 +57,7 @@ if($_POST[randomid] == $_SESSION[randomid])
 				if(mysqli_affected_rows($con) == 1)
 				{
 					echo "<script>alert('item record inserted successfully..');</script>";
-					echo "<script>window.location='viewitem.php';</script>";
+					// echo "<script>window.location='viewitem.php';</script>";
 				}
 			}
 	}

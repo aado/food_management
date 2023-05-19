@@ -94,6 +94,14 @@ body {font-family: "Lato", sans-serif;}
       $qsql = mysqli_query($con,$sql);
       while($rsitem = mysqli_fetch_array($qsql))
       {   
+
+        $sql2= "SELECT sum(qty) as sumqty FROM stocktb WHERE status='Active' AND stock_type='stock' AND item_id=".$rsitem['item_id']." GROUP BY item_id";  
+      $qsql2 = mysqli_query($con,$sql2);
+      while($rsitem2 = mysqli_fetch_array($qsql2))
+      { 
+        
+        // print_r($rsitem2['sumqty']);
+       
     ?>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 food-item">
           <form method="post" action="cart.php?action=add&id=<?php echo $rsitem["item_id"]; ?>">
@@ -110,6 +118,7 @@ body {font-family: "Lato", sans-serif;}
                   <div class="card-title fw-bold h5 mb-0"><?php echo $rsitem["item_name"]; ?></div>
                   <div class="card-description text-muted"><small><?php echo $rsitem["description"]; ?></small></div>
                   <div><small class="card-description text-success h6 mb-0">₱ <?php echo $rsitem["item_cost"]; ?></small></div>
+                  <div><small class="card-description text-success h6 mb-0">Stock/s: <?php echo intval($rsitem2["sumqty"]); ?></small></div>
                   <div class="d-grid" style="margin-top: 10px;">
                   <div class="input-group input-sm">
                     <span class="input-group-text rounded-0">Quantity</span>
@@ -124,6 +133,8 @@ body {font-family: "Lato", sans-serif;}
           </form>    
         </div>
         <?php
+        }
+  
         }
         ?>
   </div>

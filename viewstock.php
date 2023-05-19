@@ -3,6 +3,44 @@ include("main_header.php");
 include("header.php");
 if($_POST[randomid] == $_SESSION[randomid])
 {
+
+	// if ($qty[$i] == 0) {
+
+	// 	$sql= "SELECT * FROM stocktb WHERE item_id='$itemid[$i]'";  
+	// 	$qsql = mysqli_query($con,$sql);
+	// 	while($rs = mysqli_fetch_array($qsql))
+	// 	{
+	// 		$remaining = $rs['qty'];
+	// 		$sql= "UPDATE stocktb
+	// 		SET stock_type = 'stock', qty = '".$rs['qty']."'
+	// 		WHERE item_id='$itemid[$i]'";
+	// 		$qsql = mysqli_query($con,$sql);
+	// 		if(!$qsql)
+	// 		{
+	// 			echo mysqli_error($con);
+	// 		}
+	// 	}
+
+	// } else {
+	// 	print_r($qty[$i]);
+
+	// 	$sql= "UPDATE stocktb
+	// 	SET stock_type = 'stock', qty = '$qty[$i]'
+	// 	WHERE item_id='$itemid[$i]'";
+	// 	$qsql = mysqli_query($con,$sql);
+
+	// 	// -- $sql= "DELETE FROM stocktb  WHERE stock_type='Stock' AND item_id='$itemid[$i]' AND date='$_POST[stkdate]'";
+	// 	// -- $qsql = mysqli_query($con,$sql);
+		
+	// 	// --  $sql= "INSERT INTO stocktb(stock_type,item_id,date,qty,status) VALUES('Stock','$itemid[$i]','$_POST[stkdate]','$qty[$i]','Active')";
+	// 	// -- $qsql = mysqli_query($con,$sql);
+	// 	if(!$qsql)
+	// 	{
+	// 		echo mysqli_error($con);
+	// 	}
+	// }
+
+
 	if(isset($_POST[btnqty]))
 	{
 		
